@@ -18,23 +18,26 @@ const Loading = () => (
   </div>
 )
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <AppShell />,
-    children: [
-      { index: true, element: <Suspense fallback={<Loading />}><S0Intro /></Suspense> },
-      { path: 'anatomia', element: <Suspense fallback={<Loading />}><S1Anatomy /></Suspense> },
-      { path: 'jest-vitest', element: <Suspense fallback={<Loading />}><S2JestVitest /></Suspense> },
-      { path: 'primer-componente', element: <Suspense fallback={<Loading />}><S3PrimerComponente /></Suspense> },
-      { path: 'queries', element: <Suspense fallback={<Loading />}><S4Queries /></Suspense> },
-      { path: 'eventos', element: <Suspense fallback={<Loading />}><S5Eventos /></Suspense> },
-      { path: 'mocking', element: <Suspense fallback={<Loading />}><S6Mocking /></Suspense> },
-      { path: 'snapshots-a11y', element: <Suspense fallback={<Loading />}><S7SnapshotsA11y /></Suspense> },
-      { path: 'buenas-practicas', element: <Suspense fallback={<Loading />}><S8BuenasPracticas /></Suspense> },
-    ],
-  },
-])
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <AppShell />,
+      children: [
+        { index: true, element: <Suspense fallback={<Loading />}><S0Intro /></Suspense> },
+        { path: 'anatomia', element: <Suspense fallback={<Loading />}><S1Anatomy /></Suspense> },
+        { path: 'jest-vitest', element: <Suspense fallback={<Loading />}><S2JestVitest /></Suspense> },
+        { path: 'primer-componente', element: <Suspense fallback={<Loading />}><S3PrimerComponente /></Suspense> },
+        { path: 'queries', element: <Suspense fallback={<Loading />}><S4Queries /></Suspense> },
+        { path: 'eventos', element: <Suspense fallback={<Loading />}><S5Eventos /></Suspense> },
+        { path: 'mocking', element: <Suspense fallback={<Loading />}><S6Mocking /></Suspense> },
+        { path: 'snapshots-a11y', element: <Suspense fallback={<Loading />}><S7SnapshotsA11y /></Suspense> },
+        { path: 'buenas-practicas', element: <Suspense fallback={<Loading />}><S8BuenasPracticas /></Suspense> },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL },
+)
 
 export default function AppRouter() {
   return <RouterProvider router={router} />
