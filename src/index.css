@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --color-aaa-arrange: #22c55e;
+  --color-aaa-act: #3b82f6;
+  --color-aaa-assert: #f97316;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-950 text-gray-100 antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+@utility prose-guide {
+  @apply text-gray-300 leading-relaxed;
+
+  & h2 {
+    @apply text-2xl font-bold text-white mt-8 mb-4;
+  }
+
+  & h3 {
+    @apply text-xl font-semibold text-gray-100 mt-6 mb-3;
+  }
+
+  & p {
+    @apply mb-4;
+  }
+
+  & ul {
+    @apply list-disc list-inside mb-4 space-y-1;
+  }
+
+  & li {
+    @apply text-gray-300;
+  }
+
+  & strong {
+    @apply text-white font-semibold;
+  }
+
+  & code {
+    @apply bg-gray-800 text-emerald-400 px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+}
