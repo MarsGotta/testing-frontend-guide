@@ -40,4 +40,5 @@ export interface SectionMeta {
   icon: string
   description: string
   path: string
+  group?: 'fundamentos' | 'avanzado'
 }

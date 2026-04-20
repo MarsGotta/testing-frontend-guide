@@ -11,6 +11,10 @@ const S5Eventos = lazy(() => import('../sections/S5Eventos'))
 const S6Mocking = lazy(() => import('../sections/S6Mocking'))
 const S7SnapshotsA11y = lazy(() => import('../sections/S7SnapshotsA11y'))
 const S8BuenasPracticas = lazy(() => import('../sections/S8BuenasPracticas'))
+const S9Migracion = lazy(() => import('../sections/S9Migracion'))
+const S10MockingAvanzado = lazy(() => import('../sections/S10MockingAvanzado'))
+const S11Asincronia = lazy(() => import('../sections/S11Asincronia'))
+const S12Stryker = lazy(() => import('../sections/S12Stryker'))
 
 const Loading = () => (
   <div className="flex items-center justify-center h-full min-h-[400px]">
@@ -33,6 +37,10 @@ const router = createBrowserRouter(
         { path: 'mocking', element: <Suspense fallback={<Loading />}><S6Mocking /></Suspense> },
         { path: 'snapshots-a11y', element: <Suspense fallback={<Loading />}><S7SnapshotsA11y /></Suspense> },
         { path: 'buenas-practicas', element: <Suspense fallback={<Loading />}><S8BuenasPracticas /></Suspense> },
+        { path: 'migracion', element: <Suspense fallback={<Loading />}><S9Migracion /></Suspense> },
+        { path: 'mocking-avanzado', element: <Suspense fallback={<Loading />}><S10MockingAvanzado /></Suspense> },
+        { path: 'asincronia', element: <Suspense fallback={<Loading />}><S11Asincronia /></Suspense> },
+        { path: 'stryker', element: <Suspense fallback={<Loading />}><S12Stryker /></Suspense> },
       ],
     },
   ],

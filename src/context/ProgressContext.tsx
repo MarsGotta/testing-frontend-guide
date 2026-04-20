@@ -7,8 +7,10 @@ interface ProgressContextValue {
   progressPercent: number
 }
 
+import { SECTIONS } from '../data/sections.meta'
+
 const STORAGE_KEY = 'guia-testing-progress'
-const TOTAL_SECTIONS = 9
+const TOTAL_SECTIONS = SECTIONS.length
 
 function loadFromStorage(): Set<string> {
   try {

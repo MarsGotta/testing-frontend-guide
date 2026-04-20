@@ -1,6 +1,7 @@
 import type { SectionMeta } from '../types/guide.types'
 
 export const SECTIONS: SectionMeta[] = [
+  // ── Taller 1: Fundamentos ──────────────────────────────
   {
     id: 's0',
     title: '¿Por qué testear?',
@@ -8,6 +9,7 @@ export const SECTIONS: SectionMeta[] = [
     icon: '🧪',
     description: 'La pirámide de testing, regresiones y documentación viva.',
     path: '/',
+    group: 'fundamentos',
   },
   {
     id: 's1',
@@ -16,6 +18,7 @@ export const SECTIONS: SectionMeta[] = [
     icon: '🔬',
     description: 'Patrón AAA, nombres descriptivos y aserciones BDD.',
     path: '/anatomia',
+    group: 'fundamentos',
   },
   {
     id: 's2',
@@ -24,6 +27,7 @@ export const SECTIONS: SectionMeta[] = [
     icon: '⚙️',
     description: 'Configuración, matchers fundamentales y ciclo de vida.',
     path: '/jest-vitest',
+    group: 'fundamentos',
   },
   {
     id: 's3',
@@ -32,6 +36,7 @@ export const SECTIONS: SectionMeta[] = [
     icon: '🧩',
     description: 'render(), screen y el flujo básico de Testing Library.',
     path: '/primer-componente',
+    group: 'fundamentos',
   },
   {
     id: 's4',
@@ -40,6 +45,7 @@ export const SECTIONS: SectionMeta[] = [
     icon: '🔍',
     description: 'getBy, queryBy, findBy y la jerarquía de selectores.',
     path: '/queries',
+    group: 'fundamentos',
   },
   {
     id: 's5',
@@ -48,6 +54,7 @@ export const SECTIONS: SectionMeta[] = [
     icon: '🖱️',
     description: 'userEvent vs fireEvent, formularios y acciones async.',
     path: '/eventos',
+    group: 'fundamentos',
   },
   {
     id: 's6',
@@ -56,6 +63,7 @@ export const SECTIONS: SectionMeta[] = [
     icon: '🎭',
     description: 'Stubs, spies, vi.fn() y mocking de APIs con MSW.',
     path: '/mocking',
+    group: 'fundamentos',
   },
   {
     id: 's7',
@@ -64,6 +72,7 @@ export const SECTIONS: SectionMeta[] = [
     icon: '📸',
     description: 'Snapshot testing inline y tests de accesibilidad con axe.',
     path: '/snapshots-a11y',
+    group: 'fundamentos',
   },
   {
     id: 's8',
@@ -72,5 +81,43 @@ export const SECTIONS: SectionMeta[] = [
     icon: '✅',
     description: 'Cobertura, antipatrones y la regla de oro del testing.',
     path: '/buenas-practicas',
+    group: 'fundamentos',
+  },
+  // ── Taller 2: Avanzado ─────────────────────────────────
+  {
+    id: 's9',
+    title: 'Migración Karma/Jasmine a Vitest',
+    shortTitle: 'Migración',
+    icon: '🚀',
+    description: 'Por qué migrar, configuración paso a paso y equivalencias de sintaxis.',
+    path: '/migracion',
+    group: 'avanzado',
+  },
+  {
+    id: 's10',
+    title: 'Mocking Avanzado',
+    shortTitle: 'Mock Avanzado',
+    icon: '🎯',
+    description: 'Mocking de servicios HTTP, stores, router y patrones avanzados.',
+    path: '/mocking-avanzado',
+    group: 'avanzado',
+  },
+  {
+    id: 's11',
+    title: 'Dominio de la Asincronía',
+    shortTitle: 'Asincronía',
+    icon: '⏱️',
+    description: 'Fake timers, Observables, Promises y control de tiempo en tests.',
+    path: '/asincronia',
+    group: 'avanzado',
+  },
+  {
+    id: 's12',
+    title: 'Mutation Testing con Stryker',
+    shortTitle: 'Stryker',
+    icon: '🧬',
+    description: 'Mutation testing, cobertura real y cómo romper tu código para blindarte.',
+    path: '/stryker',
+    group: 'avanzado',
   },
 ]
