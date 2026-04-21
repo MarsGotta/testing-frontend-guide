@@ -5,6 +5,7 @@ import CodeBlock from '../components/shared/CodeBlock'
 import SimulatedTestOutput from '../components/shared/SimulatedTestOutput'
 import Quiz from '../components/shared/Quiz'
 import DragAndDropMatch from '../components/shared/DragAndDropMatch'
+import PracticeMore from '../components/shared/PracticeMore'
 import { useProgress } from '../context/ProgressContext'
 import {
   s9AngularConfigBefore,
@@ -161,7 +162,7 @@ export default function S9Migracion() {
         icon="🚀"
         title="Migración Karma/Jasmine a Vitest"
         description="Por qué migrar, configuración paso a paso y equivalencias de sintaxis para Angular y Vue."
-        sectionNumber={10}
+        sectionNumber={13}
       />
 
       <div className="prose-guide space-y-3">
@@ -635,6 +636,16 @@ export default function S9Migracion() {
       </div>
 
       <SimulatedTestOutput lines={s9SimulatedOutput} title="Schematic de migración automática" />
+
+      <PracticeMore
+        intro="La migración de verdad se aprende traduciendo tests reales. En el repo del taller tienes pares espejo listos para comparar: abre cualquier .old.test junto a su .test moderno y verás la misma intención expresada en las dos sintaxis."
+        repoFiles={[
+          { path: 'src/services/weatherService.old.test.js', description: 'Spies de fetch con Jasmine' },
+          { path: 'src/services/weatherService.test.js', description: 'Mismo contrato con vi.stubGlobal' },
+          { path: 'src/utils/weatherCodes.{old.test,test}.js', description: 'forEach vs it.each sobre 22 códigos WMO' },
+        ]}
+        materialReference="material/11-sintaxis-jasmine-vitest.md · tabla exhaustiva con 60+ patrones"
+      />
 
       <div className="border-t border-gray-800 pt-8">
         <Quiz

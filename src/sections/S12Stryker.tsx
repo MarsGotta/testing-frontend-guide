@@ -5,6 +5,7 @@ import CodeBlock from '../components/shared/CodeBlock'
 import SimulatedTestOutput from '../components/shared/SimulatedTestOutput'
 import Quiz from '../components/shared/Quiz'
 import DragAndDropMatch from '../components/shared/DragAndDropMatch'
+import PracticeMore from '../components/shared/PracticeMore'
 import { useProgress } from '../context/ProgressContext'
 import {
   s12CoverageLie,
@@ -51,7 +52,7 @@ export default function S12Stryker() {
         icon="🧬"
         title="Mutation Testing con Stryker"
         description="No pruebes que funciona — intenta romperlo. Mutation testing para blindar tu código."
-        sectionNumber={13}
+        sectionNumber={14}
       />
 
       <div className="prose-guide">
@@ -463,6 +464,90 @@ export default function S12Stryker() {
       </div>
 
       <SimulatedTestOutput lines={s12SimulatedOutput} title="Stryker mutation testing" />
+
+      {/* 10. Stryker con Vitest vs Stryker con Karma (highlight del bloque 4) */}
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-white">10. Stryker con Vitest vs Stryker con Karma</h2>
+        <p className="text-gray-400">
+          El repo del taller tiene <strong className="text-white">dos Strykers configurados</strong>:
+          uno con el runner de Vitest, otro con el runner de Karma. Ejecutar ambos sobre el mismo
+          archivo revela cifras que cuentan toda la historia del taller en una tabla.
+        </p>
+
+        <div className="overflow-x-auto rounded-lg border border-gray-700">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-gray-800 border-b border-gray-700">
+                <th className="text-left px-4 py-3 text-gray-400">Métrica</th>
+                <th className="text-left px-4 py-3 text-emerald-400">Stryker · Vitest</th>
+                <th className="text-left px-4 py-3 text-yellow-400">Stryker · Karma</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ['Tiempo (sobre src/utils)', '75 s', '9 s'],
+                ['Mutation score', '83.84 %', '83.84 % ✓ idéntico'],
+                ['Killed / Survived', '166 / 32', '166 / 32 ✓ idéntico'],
+                ['Tests promedio por mutante', '25.5 (perTest)', '53.2 (suite entera)'],
+                ['coverageAnalysis: "perTest"', '✓ soportado', '✗ no disponible'],
+                ['Suite cargable por Stryker', '240 tests (completa)', '118 tests (reducida)'],
+              ].map((row, idx) => (
+                <tr key={row[0]} className={`border-b border-gray-800 ${idx % 2 === 0 ? 'bg-gray-900/50' : ''}`}>
+                  <td className="px-4 py-2.5 text-gray-300 font-medium">{row[0]}</td>
+                  <td className="px-4 py-2.5"><code className="text-emerald-300 text-xs">{row[1]}</code></td>
+                  <td className="px-4 py-2.5"><code className="text-yellow-300 text-xs">{row[2]}</code></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <WhyBox variant="warning" title="⚠ El matiz del 9 s de Karma" defaultOpen>
+          <p>
+            A primera vista, Karma tardó <strong>9 s</strong> y Vitest <strong>75 s</strong> sobre los
+            mismos mutantes — Karma parece ganar. <strong className="text-white">No es así.</strong>
+          </p>
+          <p className="mt-2">
+            Para que Stryker-Karma arrancara hubo que crear un{' '}
+            <code className="text-yellow-400">karma.stryker.conf.cjs</code> que{' '}
+            <strong>carga solo los tests de <code>src/utils/</code></strong> (118 tests, sin componentes).
+            ¿Por qué? Porque cuando Stryker intenta cargar la suite completa (237 tests), el
+            instrumenter + webpack se atraganta con los módulos ESM de{' '}
+            <code className="text-yellow-400">@testing-library/user-event 14</code> y el{' '}
+            <em>dry-run</em> falla.
+          </p>
+          <p className="mt-2">
+            Karma parece rápido porque lo limitamos. En un proyecto real con 20+ squads y componentes
+            modernos, Stryker-Karma <strong>simplemente no arranca</strong>. Migrar a Vitest desbloquea
+            el mutation testing para tu proyecto entero.
+          </p>
+        </WhyBox>
+
+        <WhyBox variant="tip" title="La paridad de mutation score valida los tests">
+          <p>
+            Los dos runners dan <strong>exactamente el mismo score</strong> (83.84 %, 166 killed, 32
+            survived). Eso significa que tus tests espejados (Karma ↔ Vitest) cubren lo mismo — el
+            runner no altera la calidad, solo el tiempo y la ergonomía.
+          </p>
+          <p className="mt-2">
+            Si el score difiere entre ambos, la paridad funcional se rompió: algún{' '}
+            <code className="text-emerald-400">.old.test.*</code> no cubre lo que su gemelo{' '}
+            <code className="text-emerald-400">.test.*</code> sí cubre.
+          </p>
+        </WhyBox>
+      </div>
+
+      <PracticeMore
+        intro="Stryker se entiende mejor rompiendo código en vivo. En el repo tienes un archivo con 5 mutantes intencionales y dos suites que los cubren (una débil, una fuerte): ejecuta cada una y mira el reporte HTML para interiorizar qué tipo de test mata qué mutante."
+        repoFiles={[
+          { path: 'src/utils/temperatureConverter.js', description: 'Los 5 MUTANT_DEMO_* marcados en los comentarios' },
+          { path: 'src/utils/temperatureConverter.test.js', description: 'Dos suites · débil (mutantes vivos) y fuerte (mutantes muertos)' },
+          { path: 'stryker.vitest.config.json', description: 'Config con coverageAnalysis: perTest' },
+          { path: 'stryker.karma.config.json', description: 'Config equivalente con Karma runner (para comparar)' },
+          { path: 'reports/mutation/vitest/mutation.html', description: 'Reporte HTML tras ejecutar Stryker' },
+        ]}
+        materialReference="material/14-mutation-testing-stryker.md · roadmap por fases, operadores, CI"
+      />
 
       <div className="border-t border-gray-800 pt-8">
         <Quiz

@@ -84,13 +84,23 @@ export const SECTIONS: SectionMeta[] = [
     group: 'fundamentos',
   },
   // ── Taller 2: Avanzado ─────────────────────────────────
+  // Orden del taller: warm-up → asincronía → mocking → migración → stryker
   {
-    id: 's9',
-    title: 'Migración Karma/Jasmine a Vitest',
-    shortTitle: 'Migración',
-    icon: '🚀',
-    description: 'Por qué migrar, configuración paso a paso y equivalencias de sintaxis.',
-    path: '/migracion',
+    id: 's13',
+    title: 'Bienvenida al Taller Avanzado',
+    shortTitle: 'Warm-up',
+    icon: '🗺️',
+    description: 'Las 4 palancas del taller, recordatorio del Taller 1 y primer vistazo a Vitest.',
+    path: '/warmup',
+    group: 'avanzado',
+  },
+  {
+    id: 's11',
+    title: 'Dominio de la Asincronía',
+    shortTitle: 'Asincronía',
+    icon: '⏱️',
+    description: 'Fake timers, Observables, Promises y control de tiempo en tests.',
+    path: '/asincronia',
     group: 'avanzado',
   },
   {
@@ -103,12 +113,12 @@ export const SECTIONS: SectionMeta[] = [
     group: 'avanzado',
   },
   {
-    id: 's11',
-    title: 'Dominio de la Asincronía',
-    shortTitle: 'Asincronía',
-    icon: '⏱️',
-    description: 'Fake timers, Observables, Promises y control de tiempo en tests.',
-    path: '/asincronia',
+    id: 's9',
+    title: 'Migración Karma/Jasmine a Vitest',
+    shortTitle: 'Migración',
+    icon: '🚀',
+    description: 'Por qué migrar, configuración paso a paso y equivalencias de sintaxis.',
+    path: '/migracion',
     group: 'avanzado',
   },
   {

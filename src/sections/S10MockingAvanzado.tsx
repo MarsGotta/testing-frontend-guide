@@ -5,6 +5,7 @@ import CodeBlock from '../components/shared/CodeBlock'
 import SimulatedTestOutput from '../components/shared/SimulatedTestOutput'
 import Quiz from '../components/shared/Quiz'
 import DragAndDropMatch from '../components/shared/DragAndDropMatch'
+import PracticeMore from '../components/shared/PracticeMore'
 import { useProgress } from '../context/ProgressContext'
 import {
   s10HoistingProblem,
@@ -92,7 +93,7 @@ export default function S10MockingAvanzado() {
         icon="🎯"
         title="Mocking Avanzado"
         description="Mocking de servicios HTTP, stores (NgRx/Pinia/Redux/Zustand/TanStack Query), router y patrones avanzados de aislamiento."
-        sectionNumber={11}
+        sectionNumber={12}
       />
 
       <div className="prose-guide space-y-3">
@@ -401,6 +402,16 @@ export default function S10MockingAvanzado() {
       </div>
 
       <SimulatedTestOutput lines={s10SimulatedOutput} title="vitest run s10-mocking-avanzado/" />
+
+      <PracticeMore
+        intro="El patrón canónico de vi.mock + vi.hoisted se ve mejor aplicado a código real. En el repo tienes un ejemplo completo en useWeather, y un caso más complejo en WeatherApp que mockea dos servicios a la vez compartiendo datos."
+        repoFiles={[
+          { path: 'src/hooks/useWeather.test.js', description: 'Patrón canónico de vi.hoisted + vi.mock' },
+          { path: 'src/components/WeatherApp/WeatherApp.test.jsx', description: 'Dos servicios mockeados compartiendo datos mock' },
+          { path: 'src/hooks/useWeather.old.test.js', description: 'La alternativa legacy sin vi.mock (spyOn de fetch)' },
+        ]}
+        materialReference="material/12-mocking-avanzado.md · vi.hoisted, reset de mocks, antipatrones"
+      />
 
       <div className="border-t border-gray-800 pt-8">
         <Quiz

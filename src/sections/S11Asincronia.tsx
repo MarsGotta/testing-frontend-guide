@@ -5,6 +5,7 @@ import CodeBlock from '../components/shared/CodeBlock'
 import SimulatedTestOutput from '../components/shared/SimulatedTestOutput'
 import Quiz from '../components/shared/Quiz'
 import DragAndDropMatch from '../components/shared/DragAndDropMatch'
+import PracticeMore from '../components/shared/PracticeMore'
 import { useProgress } from '../context/ProgressContext'
 import {
   s11FakeAsyncBefore,
@@ -59,7 +60,7 @@ export default function S11Asincronia() {
         icon="⏱️"
         title="Dominio de la Asincronía"
         description="Fake timers, Observables, Promises y control total del tiempo en tus tests."
-        sectionNumber={12}
+        sectionNumber={11}
       />
 
       <div className="prose-guide space-y-3">
@@ -434,6 +435,17 @@ export default function S11Asincronia() {
       </div>
 
       <SimulatedTestOutput lines={s11SimulatedOutput} title="vitest run s11-asincronia/" />
+
+      <PracticeMore
+        intro="La asincronía se fija en los dedos probando los patrones sobre código real. El repo tiene useGeocoding con debounce y race conditions, y un archivo de demo donde fireEvent y userEvent conviven para que veas la diferencia."
+        repoFiles={[
+          { path: 'src/hooks/useGeocoding.test.js', description: 'Tests async · debounce, race condition, cleanup al desmontar' },
+          { path: 'src/components/SearchBar/SearchBar.fireEvent.demo.test.jsx', description: 'Demo comparativa fireEvent vs userEvent' },
+          { path: 'src/components/SearchBar/SearchBar.test.jsx', description: 'handleBlur con setTimeout(200) + act()' },
+          { path: 'src/hooks/useGeocoding.old.test.js', description: 'El mismo hook testeado con jasmine.clock (ver la diferencia)' },
+        ]}
+        materialReference="material/13-dominio-asincronia.md · sync vs async en fake timers, event loop, patrones React"
+      />
 
       <div className="border-t border-gray-800 pt-8">
         <Quiz
